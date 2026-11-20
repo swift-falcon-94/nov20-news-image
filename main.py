@@ -343,7 +343,7 @@ MAIN = [
          body="Russia fired 110+ missiles, 400 drones into Fri. 8 killed, 28 hurt. 3 Dnipro bridges damaged. Poland scrambled jets as airspace was violated.",
          lon=30, lat=50, ill="barrage"),
     dict(n=3, region="JUSTICE", head="MYANMAR: ICJ RULING UNFAIR (19 NOV)",
-         body="Thu: court ruled 9-6 Myanmar committed genocide vs Rohingya, a first for a state. Fri: Naypyitaw calls it unfair, not unanimous. Refugees celebrate.",
+         body="Thu: court ruled 9-6 Myanmar committed genocide vs Rohingya, a first for a state. Fri: Naypyitaw calls it unfair, not unanimous. Refugees celebrate, reparations next.",
          lon=96, lat=21, ill="court"),
     dict(n=4, region="SUMMIT", head="SHENZHEN SUMMIT: 4-POINT PEACE PACT (19 NOV)",
          body="Trump, Xi, Putin met 90 min, signed declaration: no nuclear war, oil supply, UN reform, ICC limits. No Ukraine or Iran deal. Trade truce extended.",
