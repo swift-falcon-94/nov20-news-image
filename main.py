@@ -440,7 +440,7 @@ STORIES = [
 ALSO = [
     "TRUMP-IRAN: DECISION PUSHED TO 2027; SENATE REJECTS WAR POWERS 51-48; IRAN OPS COST $48.3BN.",
     "HORMUZ: TANKER CATCHES FIRE AFTER HITTING A MINE; IEA CALLS IT THE TOP THREAT TO ENERGY SECURITY.",
-    "GAZA: TANKS CROSSED YELLOW LINE 18 NOV, FIRST SINCE CEASEFIRE; 3 KILLED; 4 NATIONS URGE AID ACCESS.",
+    "GAZA: TANKS CROSSED YELLOW LINE 18 NOV, FIRST SINCE CEASEFIRE; 3 KILLED; 4 NATIONS URGE ACCESS.",
     "BANGLADESH: VIOLENCE AHEAD OF HASINA RETURN; ARSON IN GOPALGANJ; GOVT REJECTS PASSPORT REQUEST.",
     "US-VENEZUELA: HEGSETH SIGNS MILITARY DEAL IN CARACAS, UNDER A YEAR AFTER MADURO WAS CAPTURED.",
     "COP31: DRAFT DROPS FOSSIL-FUEL PHASE-OUT AND NET-ZERO DATES; PACIFIC NATIONS DEMAND PHASE-OUT.",
@@ -510,8 +510,8 @@ LAND = [
     _pts("95,5 98,3 100,0 103,-2 106,-6 110,-7 114,-8 118,-9 120,-10 124,-10 128,-8 130,-4 132,-2 131,1 128,1 124,0 120,0 116,1 112,2 108,3 104,2 100,5 95,5"),
 ]
 
-PIN_OFF = {2: (14, -14), 5: (-16, -12), 6: (12, 8), 7: (-16, -12),
-           9: (-16, -12), 10: (-18, 4), 13: (10, -12)}
+PIN_OFF = {2: (14, -14), 5: (-16, -12), 6: (-16, 10), 7: (-16, -12),
+           9: (14, -14), 10: (-18, 4), 13: (-16, -12)}
 
 # ---------------------------------------------------------- illustrations
 def pic(img, kind, x, y, w, h):
@@ -556,24 +556,32 @@ def pic(img, kind, x, y, w, h):
             a = 2 * math.pi * i / 12 - math.pi / 2
             img.disc(int(cx + 13 * math.cos(a)), int(cy + 13 * math.sin(a)), 2, GOLD)
     elif kind == "tower":
-        img.rect(cx - 9, y + 12, 18, h - 16, PANEL2)
-        img.seg(cx, y + 2, cx, y + 12, DIM, 2)
-        for fy in range(y + 16, y + h - 8, 7):
-            img.seg(cx - 9, fy, cx + 9, fy, GOLD, 1)
-        img.arc(cx + 16, y + 16, 8, 0.5, 2.6, RED, 2, 12)
-        img.disc(cx + 20, y + 14, 2, RED)
+        img.rect(cx - 12, y + 14, 24, h - 18, EDGE)
+        img.rect(cx - 12, y + 14, 24, 3, GOLD)
+        img.seg(cx, y + 4, cx, y + 14, DIM, 2)
+        for fy in range(y + 20, y + h - 6, 6):
+            img.seg(cx - 9, fy, cx - 2, fy, BG, 1)
+            img.seg(cx + 2, fy, cx + 9, fy, BG, 1)
+        img.arc(cx + 18, y + 18, 10, 0.4, 2.8, RED, 3, 14)
+        img.disc(cx + 24, y + 12, 3, RED)
+        img.disc(cx + 26, y + 22, 2, GOLD)
+        img.seg(cx + 12, y + 14, cx + 22, y + 10, RED, 2)
     elif kind == "voyager":
-        img.arc(cx - 6, cy - 4, 18, 3.4, 6.0, SKY, 2, 20)
-        img.seg(cx - 6, cy - 4, cx - 6, cy + 20, DIM, 2)
-        img.seg(cx - 16, cy + 20, cx + 4, cy + 20, DIM, 2)
+        img.arc(cx - 4, cy - 8, 20, 3.6, 5.9, SKY, 3, 24)
+        img.arc(cx - 4, cy - 8, 14, 3.6, 5.9, SKY, 2, 20)
+        img.seg(cx - 4, cy - 8, cx - 4, cy + 20, DIM, 2)
+        img.seg(cx - 14, cy + 20, cx + 6, cy + 20, DIM, 2)
+        img.seg(cx - 4, cy - 8, cx + 14, cy - 20, GOLD, 2)
+        img.disc(cx + 14, cy - 20, 3, GOLD)
+        img.arc(cx + 22, cy - 24, 8, -0.6, 0.9, DIM, 1, 10)
         for sx, sy in ((x + 8, y + 6), (x + w - 10, y + 10), (x + 14, y + h - 8)):
             img.disc(sx, sy, 1, FG)
         img.txt(x + 2, y + h - 9, "26BN KM", DIM)
     elif kind == "crowd":
         for i in range(5):
-            px = x + 12 + i * (w - 24) // 4
-            img.disc(px, cy - 6, 6, GOLD if i % 2 == 0 else SKY)
-            img.rect(px - 8, cy + 2, 16, h - cy - 4, PANEL2)
+            px = x + 14 + i * (w - 28) // 4
+            img.disc(px, cy - 8, 6, GOLD if i % 2 == 0 else SKY)
+            img.rect(px - 9, cy, 18, y + h - cy - 4, EDGE)
         img.seg(x + 4, y + h - 4, x + w - 4, y + h - 4, EDGE, 1)
     elif kind == "boat":
         img.gon([(x + 14, cy + 2), (x + w - 14, cy + 2), (x + w - 24, cy + 16), (x + 24, cy + 16)], SKY)
@@ -653,7 +661,7 @@ def build():
 
     _, eqy = proj(0, 0)
     img.seg(mx0, eqy, mx1, eqy, EDGE, 1)
-    img.txt(mx1 - 62, eqy + 2, "EQUATOR", DIM)
+    img.txt(140, eqy + 2, "EQUATOR", DIM)
     for poly in LAND:
         img.gon([proj(lon, lat) for lon, lat in poly], LANDC)
     for st in STORIES:
